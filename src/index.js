@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import upload from './icons/upload.svg'
+import Wizard from './components/Wizard/Wizard';
+import './index.scss';
+import classes from './Button.module.scss'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+function App() {
+  const [show, setShow] = useState(false);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  return(
+    <>
+      <button onClick={() => setShow(true)} className={classes.button} type="button">
+        <img src={upload} alt="title"></img>
+        Upload transactions
+      </button>
+      <Wizard show={show}/>
+    </>
+  )
+}
+
+ReactDOM.render(<App />, document.querySelector('#root'));
